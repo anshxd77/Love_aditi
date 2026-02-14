@@ -284,28 +284,12 @@ function showPreview(file, previewId) {
 }
 
 /**
- * Upload a file to the server. Returns a promise that resolves with the URL
- * of the uploaded file. Uses Fetch with FormData and posts to /upload.
- * The server responds with JSON: { success: true, filePath: '/uploads/...'}.
+ * Create a local object URL for the selected file. This avoids a server
+ * round-trip and works on platforms with read-only filesystems (e.g. Vercel).
+ * Returns a promise for API compatibility with the rest of the code.
  */
 function uploadFile(file) {
-  const formData = new FormData();
-  formData.append('photo', file);
-  return fetch('/upload', {
-    method: 'POST',
-    body: formData,
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data && data.filePath) {
-        return data.filePath;
-      }
-      throw new Error('Upload failed');
-    })
-    .catch((err) => {
-      console.error(err);
-      alert('Failed to upload photo.');
-    });
+  return Promise.resolve(URL.createObjectURL(file));
 }
 
 /**
