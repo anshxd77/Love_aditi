@@ -12,14 +12,6 @@
  * /upload and rely on Multer on the server side【733153657844934†L115-L133】.
  */
 
-// DEBUG: Verify script execution
-alert('Main.js v2.2 Loaded! If you see this, the script is running.');
-
-window.onerror = function (msg, url, line) {
-  alert('Global Error: ' + msg + '\nLine: ' + line);
-  return false;
-};
-
 // Wait for the DOM to be fully loaded before running any code
 document.addEventListener('DOMContentLoaded', () => {
   initStars();
