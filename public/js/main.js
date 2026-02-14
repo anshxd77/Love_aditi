@@ -236,26 +236,17 @@ function setupUploads() {
     maleInput.addEventListener('change', () => {
       const file = maleInput.files[0];
       if (file) {
-        // DEBUG: Alert selection
-        alert(`Selected file: ${file.name}`);
-        try {
-          showPreview(file, 'malePreview');
-          uploadFile(file).then((url) => {
-            console.log('Male photo uploaded:', url);
-            maleImg.src = url;
-            maleUploaded = true;
-            // Visual feedback
-            const card = document.getElementById('malePreview').closest('.photo-card');
-            if (card) card.classList.add('uploaded-success');
+        showPreview(file, 'malePreview');
+        uploadFile(file).then((url) => {
+          console.log('Male photo uploaded:', url);
+          maleImg.src = url;
+          maleUploaded = true;
+          // Visual feedback
+          const card = document.getElementById('malePreview').closest('.photo-card');
+          if (card) card.classList.add('uploaded-success');
 
-            // DEBUG: Alert success
-            alert('Male photo processed!');
-
-            checkBothUploaded();
-          });
-        } catch (e) {
-          alert('Error: ' + e.message);
-        }
+          checkBothUploaded();
+        });
       }
     });
   }
@@ -264,28 +255,18 @@ function setupUploads() {
     femaleInput.addEventListener('change', () => {
       const file = femaleInput.files[0];
       if (file) {
-        // DEBUG: Alert selection
-        alert(`Selected file: ${file.name}`);
-        try {
-          showPreview(file, 'femalePreview');
-          uploadFile(file).then((url) => {
-            console.log('Female photo uploaded:', url);
-            if (femaleImgNormal) femaleImgNormal.src = url;
-            if (femaleImgBlur) femaleImgBlur.src = url;
-            femaleUploaded = true;
+        showPreview(file, 'femalePreview');
+        uploadFile(file).then((url) => {
+          console.log('Female photo uploaded:', url);
+          if (femaleImgNormal) femaleImgNormal.src = url;
+          if (femaleImgBlur) femaleImgBlur.src = url;
+          femaleUploaded = true;
+          // Visual feedback
+          const card = document.getElementById('femalePreview').closest('.photo-card');
+          if (card) card.classList.add('uploaded-success');
 
-            // Visual feedback
-            const card = document.getElementById('femalePreview').closest('.photo-card');
-            if (card) card.classList.add('uploaded-success');
-
-            // DEBUG: Alert success
-            alert('Female photo processed!');
-
-            checkBothUploaded();
-          });
-        } catch (e) {
-          alert('Error: ' + e.message);
-        }
+          checkBothUploaded();
+        });
       }
     });
   }
