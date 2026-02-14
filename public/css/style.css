@@ -1,0 +1,2001 @@
+/*
+ * Global styles for the Valentine's Day surprise site.
+ * Premium, polished design with deep glassmorphism, animated gradients,
+ * and elegant micro-interactions.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-deep: #0a0015;
+  --bg-mid: #1a0a2e;
+  --accent-pink: #ff2d75;
+  --accent-rose: #ff6b9d;
+  --accent-gold: #ffd700;
+  --accent-lavender: #c471ed;
+  --text-primary: #fff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: 'Inter', 'Poppins', sans-serif;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, #0a0015, #1a0a2e, #2d1b4e, #1a0a2e, #0a0015);
+  background-size: 400% 400%;
+  animation: bgShift 8s ease infinite;
+  overflow-x: hidden;
+}
+
+/* ─── Background Animation ─── */
+@keyframes bgShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  25% {
+    background-position: 50% 100%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  75% {
+    background-position: 50% 0%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ─── Floating Background Love Texts ─── */
+.floating-texts-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.floating-text-bg {
+  position: absolute;
+  white-space: nowrap;
+  font-family: 'Great Vibes', cursive;
+  color: rgba(255, 255, 255, 0.05);
+  font-size: 1.5rem;
+  pointer-events: none;
+  user-select: none;
+  animation: driftTextUp linear forwards;
+}
+
+.floating-text-bg.ft-glow {
+  color: rgba(255, 45, 117, 0.07);
+  text-shadow: 0 0 20px rgba(255, 45, 117, 0.04);
+}
+
+@keyframes driftTextUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) rotate(var(--ft-rotate, 0deg));
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(calc(-100vh - 50px)) rotate(var(--ft-rotate, 0deg));
+  }
+}
+
+/* ─── Corner Sparkle Decorators ─── */
+.idx-sparkle {
+  position: fixed;
+  font-size: 1.3rem;
+  color: var(--accent-gold);
+  opacity: 0;
+  animation: idxSparklePulse 3s ease-in-out infinite;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.idx-sparkle-tl {
+  top: 1.2rem;
+  left: 1.2rem;
+  animation-delay: 0s;
+}
+
+.idx-sparkle-tr {
+  top: 1.2rem;
+  right: 1.2rem;
+  animation-delay: 0.75s;
+}
+
+.idx-sparkle-bl {
+  bottom: 3.5rem;
+  left: 1.2rem;
+  animation-delay: 1.5s;
+}
+
+.idx-sparkle-br {
+  bottom: 3.5rem;
+  right: 1.2rem;
+  animation-delay: 2.25s;
+}
+
+@keyframes idxSparklePulse {
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.5) rotate(0deg);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.3) rotate(180deg);
+  }
+}
+
+/* ─── Love Ticker Marquee ─── */
+.love-ticker {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 4;
+  overflow: hidden;
+  background: rgba(10, 0, 25, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 45, 117, 0.15);
+  padding: 0.5rem 0;
+}
+
+.love-ticker-track {
+  display: flex;
+  gap: 2rem;
+  white-space: nowrap;
+  animation: tickerScroll 30s linear infinite;
+}
+
+.love-ticker-track span {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+}
+
+@keyframes tickerScroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ─── Utility Animations ─── */
+@keyframes floatContainer {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes borderGlow {
+
+  0%,
+  100% {
+    border-color: rgba(255, 45, 117, 0.3);
+    box-shadow: 0 0 15px rgba(255, 45, 117, 0.1);
+  }
+
+  50% {
+    border-color: rgba(196, 113, 237, 0.5);
+    box-shadow: 0 0 25px rgba(196, 113, 237, 0.2);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+/* ─── Stars Canvas ─── */
+#stars-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Shooting Stars Canvas ─── */
+#shooting-stars-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── Cursor Heart Trail ─── */
+#cursorTrail {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.cursor-heart {
+  position: absolute;
+  pointer-events: none;
+  font-size: 1rem;
+  opacity: 1;
+  animation: cursorHeartFade 1s ease-out forwards;
+  user-select: none;
+}
+
+@keyframes cursorHeartFade {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotate(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.3) translateY(-40px) rotate(30deg);
+  }
+}
+
+/* ─── Click / Touch Love Burst ─── */
+#loveBurst {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 998;
+}
+
+.love-burst-particle {
+  position: absolute;
+  pointer-events: none;
+  font-size: 0.8rem;
+  opacity: 1;
+  animation: burstOut 0.8s ease-out forwards;
+}
+
+@keyframes burstOut {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(var(--bx), var(--by)) scale(0.2);
+  }
+}
+
+/* ─── Heartbeat ECG Divider ─── */
+.heartbeat-divider {
+  position: relative;
+  width: 80%;
+  max-width: 500px;
+  height: 40px;
+  margin: 0.5rem 0;
+  opacity: 0.6;
+  animation: fadeInUp 1s ease-out 1s backwards;
+}
+
+.heartbeat-divider svg {
+  width: 100%;
+  height: 100%;
+}
+
+.heartbeat-line {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: drawHeartbeat 3s ease-in-out forwards, drawHeartbeat 3s ease-in-out 4s infinite;
+  filter: drop-shadow(0 0 4px rgba(255, 45, 117, 0.4));
+}
+
+@keyframes drawHeartbeat {
+  0% {
+    stroke-dashoffset: 2000;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ─── Love Reasons Typewriter ─── */
+.love-reasons {
+  position: relative;
+  margin: 0.8rem 0 1.5rem;
+  padding: 0.6rem 1.5rem;
+  text-align: center;
+  animation: fadeInUp 1s ease-out 1.2s backwards;
+}
+
+.love-reasons-label {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: rgba(255, 215, 0, 0.7);
+  margin-right: 0.3rem;
+}
+
+.love-reasons-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(0.85rem, 2vw, 1.1rem);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.02em;
+}
+
+.love-reasons-cursor {
+  font-weight: 300;
+  font-size: 1.1rem;
+  color: var(--accent-pink);
+  animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+
+/* ─── Moon ─── */
+.moon {
+  position: fixed;
+  top: 5%;
+  right: 10%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0) 70%);
+  box-shadow: 0 0 60px rgba(255, 255, 255, 0.3), 0 0 120px rgba(255, 215, 0, 0.15);
+  z-index: 1;
+  animation: floatContainer 8s ease-in-out infinite;
+}
+
+/* ─── Hearts Container ─── */
+#hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.falling-heart {
+  position: absolute;
+  top: -10vh;
+  opacity: 0.6;
+  animation: fall 8s linear infinite, sway 4s ease-in-out infinite alternate;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.falling-heart::before,
+.falling-heart::after {
+  content: none;
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.6;
+  }
+
+  90% {
+    opacity: 0.6;
+  }
+
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sway {
+  from {
+    margin-left: -25px;
+  }
+
+  to {
+    margin-left: 25px;
+  }
+}
+
+/* ─── Main Content ─── */
+.content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 200vh;
+  padding-top: 15vh;
+  animation: fadeInUp 1.2s ease-out;
+}
+
+/* ─── Main Message ─── */
+#main-message {
+  font-family: 'Playwrite NZ Basic', cursive;
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  margin: 0;
+  padding: 0 1.5rem;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(255, 45, 117, 0.4), 0 4px 40px rgba(196, 113, 237, 0.2);
+  animation: glow 3s ease-in-out infinite alternate;
+  line-height: 1.3;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 2px 20px rgba(255, 45, 117, 0.4), 0 4px 40px rgba(196, 113, 237, 0.2);
+  }
+
+  to {
+    text-shadow: 0 2px 30px rgba(255, 45, 117, 0.6), 0 4px 60px rgba(196, 113, 237, 0.4), 0 0 80px rgba(255, 107, 157, 0.15);
+  }
+}
+
+/* ─── Letter Animations ─── */
+.letter-animation {
+  display: inline-block;
+  opacity: 1;
+  color: #fff;
+  text-shadow: inherit;
+}
+
+/* Animation library */
+.anim-bounce {
+  animation: bounce 2s infinite;
+}
+
+.anim-flash {
+  animation: flash 3s infinite;
+}
+
+.anim-pulse {
+  animation: pulse 2s infinite;
+}
+
+.anim-rubberBand {
+  animation: rubberBand 2s infinite;
+}
+
+.anim-shakeX {
+  animation: shakeX 2s infinite;
+}
+
+.anim-shakeY {
+  animation: shakeY 2s infinite;
+}
+
+.anim-headShake {
+  animation: headShake 2s infinite;
+}
+
+.anim-swing {
+  animation: swing 2s infinite;
+}
+
+.anim-tada {
+  animation: tada 2s infinite;
+}
+
+.anim-wobble {
+  animation: wobble 2s infinite;
+}
+
+.anim-jello {
+  animation: jello 2s infinite;
+}
+
+.anim-heartBeat {
+  animation: heartBeat 1.5s infinite;
+}
+
+.anim-flip {
+  animation: flip 2s infinite;
+}
+
+.anim-rotateIn {
+  animation: rotateIn 2s infinite;
+}
+
+.anim-zoomIn {
+  animation: zoomIn 2s infinite;
+}
+
+@keyframes bounce {
+
+  0%,
+  20%,
+  53%,
+  80%,
+  100% {
+    transform: translate3d(0, 0, 0)
+  }
+
+  40%,
+  43% {
+    transform: translate3d(0, -30px, 0) scaleY(1.1)
+  }
+
+  70% {
+    transform: translate3d(0, -15px, 0) scaleY(1.05)
+  }
+}
+
+@keyframes flash {
+
+  0%,
+  50%,
+  100% {
+    opacity: 1
+  }
+
+  25%,
+  75% {
+    opacity: 0
+  }
+}
+
+@keyframes rubberBand {
+  0% {
+    transform: scale3d(1, 1, 1)
+  }
+
+  30% {
+    transform: scale3d(1.25, .75, 1)
+  }
+
+  40% {
+    transform: scale3d(.75, 1.25, 1)
+  }
+
+  50% {
+    transform: scale3d(1.15, .85, 1)
+  }
+
+  65% {
+    transform: scale3d(.95, 1.05, 1)
+  }
+
+  75% {
+    transform: scale3d(1.05, .95, 1)
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1)
+  }
+}
+
+@keyframes shakeX {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0)
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate3d(-10px, 0, 0)
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate3d(10px, 0, 0)
+  }
+}
+
+@keyframes shakeY {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0)
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate3d(0, -10px, 0)
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate3d(0, 10px, 0)
+  }
+}
+
+@keyframes headShake {
+  0% {
+    transform: translateX(0)
+  }
+
+  6.5% {
+    transform: translateX(-6px) rotateY(-9deg)
+  }
+
+  18.5% {
+    transform: translateX(5px) rotateY(7deg)
+  }
+
+  31.5% {
+    transform: translateX(-3px) rotateY(-5deg)
+  }
+
+  43.5% {
+    transform: translateX(2px) rotateY(3deg)
+  }
+
+  50% {
+    transform: translateX(0)
+  }
+}
+
+@keyframes swing {
+  20% {
+    transform: rotate3d(0, 0, 1, 15deg)
+  }
+
+  40% {
+    transform: rotate3d(0, 0, 1, -10deg)
+  }
+
+  60% {
+    transform: rotate3d(0, 0, 1, 5deg)
+  }
+
+  80% {
+    transform: rotate3d(0, 0, 1, -5deg)
+  }
+
+  100% {
+    transform: rotate3d(0, 0, 1, 0deg)
+  }
+}
+
+@keyframes tada {
+  0% {
+    transform: scale3d(1, 1, 1)
+  }
+
+  10%,
+  20% {
+    transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg)
+  }
+
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg)
+  }
+
+  40%,
+  60%,
+  80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg)
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1)
+  }
+}
+
+@keyframes wobble {
+  0% {
+    transform: translate3d(0, 0, 0)
+  }
+
+  15% {
+    transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg)
+  }
+
+  30% {
+    transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg)
+  }
+
+  45% {
+    transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg)
+  }
+
+  60% {
+    transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg)
+  }
+
+  75% {
+    transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg)
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0)
+  }
+}
+
+@keyframes jello {
+
+  0%,
+  11.1%,
+  100% {
+    transform: translate3d(0, 0, 0)
+  }
+
+  22.2% {
+    transform: skewX(-12.5deg) skewY(-12.5deg)
+  }
+
+  33.3% {
+    transform: skewX(6.25deg) skewY(6.25deg)
+  }
+
+  44.4% {
+    transform: skewX(-3.125deg) skewY(-3.125deg)
+  }
+
+  55.5% {
+    transform: skewX(1.5625deg) skewY(1.5625deg)
+  }
+
+  66.6% {
+    transform: skewX(-.78125deg) skewY(-.78125deg)
+  }
+}
+
+@keyframes heartBeat {
+  0% {
+    transform: scale(1)
+  }
+
+  14% {
+    transform: scale(1.3)
+  }
+
+  28% {
+    transform: scale(1)
+  }
+
+  42% {
+    transform: scale(1.3)
+  }
+
+  70% {
+    transform: scale(1)
+  }
+}
+
+@keyframes flip {
+  0% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+    animation-timing-function: ease-out
+  }
+
+  40% {
+    transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+    animation-timing-function: ease-out
+  }
+
+  50% {
+    transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+    animation-timing-function: ease-in
+  }
+
+  80% {
+    transform: perspective(400px) scale3d(.95, .95, .95);
+    animation-timing-function: ease-in
+  }
+
+  100% {
+    transform: perspective(400px);
+    animation-timing-function: ease-in
+  }
+}
+
+@keyframes rotateIn {
+  0% {
+    transform-origin: center;
+    transform: rotate3d(0, 0, 1, -200deg);
+    opacity: 0
+  }
+
+  100% {
+    transform-origin: center;
+    transform: translate3d(0, 0, 0);
+    opacity: 1
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale3d(.3, .3, .3)
+  }
+
+  50% {
+    opacity: 1
+  }
+}
+
+/* ─── Glass Card ─── */
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  animation: borderGlow 4s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════
+   Shayari — Open-Air Floating Text
+   ═══════════════════════════════════════ */
+.shayari-open {
+  position: relative;
+  margin: 1.5rem 0 2rem;
+  padding: 1rem 1.5rem;
+  max-width: 650px;
+  width: 95%;
+  text-align: center;
+  /* No card — fully transparent */
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  animation: fadeInUp 1.2s ease-out 0.4s backwards;
+}
+
+/* Sparkle particle container */
+.shayari-sparkles {
+  position: absolute;
+  inset: -20px;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+
+.shayari-sparkle {
+  position: absolute;
+  font-size: 0.6rem;
+  color: var(--accent-gold);
+  opacity: 0;
+  pointer-events: none;
+  animation: sparkleFloat 3s ease-in-out infinite;
+}
+
+@keyframes sparkleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.5);
+  }
+
+  30% {
+    opacity: 0.8;
+    transform: translateY(-5px) scale(1);
+  }
+
+  70% {
+    opacity: 0.6;
+    transform: translateY(-15px) scale(0.8);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-25px) scale(0.3);
+  }
+}
+
+/* Decorative quotation marks — big, faded, floating */
+.shayari-open .shayari-deco-left,
+.shayari-open .shayari-deco-right {
+  position: absolute;
+  font-size: 4.5rem;
+  font-family: 'Great Vibes', cursive;
+  color: rgba(255, 215, 0, 0.1);
+  pointer-events: none;
+  z-index: 0;
+  line-height: 1;
+  animation: decoFloat 5s ease-in-out infinite alternate;
+}
+
+.shayari-open .shayari-deco-left {
+  top: -0.8rem;
+  left: 0;
+}
+
+.shayari-open .shayari-deco-right {
+  bottom: 1.5rem;
+  right: 0;
+}
+
+@keyframes decoFloat {
+  0% {
+    opacity: 0.08;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0.15;
+    transform: translateY(-6px);
+  }
+}
+
+/* Main shayari lines */
+.shayari-open .shayari-line {
+  position: relative;
+  z-index: 1;
+  font-family: 'Tiro Devanagari Hindi', 'Noto Sans Devanagari', serif;
+  font-size: clamp(1.35rem, 4vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.9;
+  margin: 0;
+  padding: 0.15rem 0;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow:
+    0 0 30px rgba(255, 45, 117, 0.5),
+    0 0 60px rgba(196, 113, 237, 0.25),
+    0 0 100px rgba(255, 107, 157, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.4);
+  animation: shayariReveal 1.5s ease-out backwards;
+}
+
+.shayari-open .shayari-line-2 {
+  color: var(--accent-rose);
+  font-style: italic;
+  text-shadow:
+    0 0 35px rgba(255, 107, 157, 0.6),
+    0 0 70px rgba(255, 45, 117, 0.3),
+    0 0 120px rgba(196, 113, 237, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.4);
+  animation-delay: 0.7s;
+}
+
+@keyframes shayariReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.97);
+    filter: blur(6px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Compact play button — small, translucent, non-competing */
+.shayari-open .shayari-play-btn {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+  padding: 0.4rem 1.2rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.shayari-open .shayari-play-btn:hover {
+  color: #fff;
+  background: rgba(255, 45, 117, 0.15);
+  border-color: rgba(255, 45, 117, 0.3);
+  box-shadow: 0 0 20px rgba(255, 45, 117, 0.15);
+  transform: translateY(-1px);
+}
+
+.shayari-open .shayari-play-btn.playing {
+  color: var(--accent-gold);
+  border-color: rgba(255, 215, 0, 0.25);
+  background: rgba(255, 215, 0, 0.08);
+}
+
+.shayari-play-icon {
+  font-size: 0.9rem;
+  display: inline-block;
+  animation: noteFloat 2.5s ease-in-out infinite;
+}
+
+@keyframes noteFloat {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-2px) rotate(-5deg);
+  }
+
+  75% {
+    transform: translateY(1px) rotate(5deg);
+  }
+}
+
+
+/* ═══════════════════════════════════════
+   Speaker Popup (during shayari playback)
+   ═══════════════════════════════════════ */
+.speaker-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 2rem 2.5rem;
+  background: rgba(10, 0, 25, 0.85);
+  border: 1px solid rgba(255, 107, 157, 0.3);
+  border-radius: 24px;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(255, 45, 117, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.speaker-popup.visible {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.speaker-popup.hidden {
+  display: flex;
+}
+
+/* Pulsating rings */
+.speaker-rings {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.speaker-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 45, 117, 0.2);
+  animation: speakerRingPulse 2s ease-out infinite;
+}
+
+.speaker-ring-1 {
+  width: 100%;
+  height: 100%;
+  animation-delay: 0s;
+}
+
+.speaker-ring-2 {
+  width: 130%;
+  height: 130%;
+  animation-delay: 0.4s;
+}
+
+.speaker-ring-3 {
+  width: 160%;
+  height: 160%;
+  animation-delay: 0.8s;
+}
+
+@keyframes speakerRingPulse {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.3);
+  }
+}
+
+/* Speaker icon */
+.speaker-icon {
+  font-size: 3rem;
+  z-index: 1;
+  animation: speakerBounce 1s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px rgba(255, 45, 117, 0.4));
+}
+
+@keyframes speakerBounce {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+/* Sound wave bars */
+.speaker-waves {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 24px;
+  z-index: 1;
+}
+
+.speaker-wave {
+  display: block;
+  width: 4px;
+  height: 8px;
+  background: linear-gradient(to top, var(--accent-pink), var(--accent-lavender));
+  border-radius: 2px;
+  animation: waveBar 0.8s ease-in-out infinite alternate;
+}
+
+.speaker-wave:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.speaker-wave:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.speaker-wave:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.speaker-wave:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+.speaker-wave:nth-child(5) {
+  animation-delay: 0.6s;
+}
+
+@keyframes waveBar {
+  0% {
+    height: 4px;
+  }
+
+  100% {
+    height: 22px;
+  }
+}
+
+/* Label */
+.speaker-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.1em;
+  z-index: 1;
+}
+
+/* ─── Upload Section ─── */
+#upload-section {
+  margin-top: 3rem;
+  padding: 2.5rem;
+  max-width: 540px;
+  width: 90%;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  animation: fadeInUp 0.8s ease-out 0.3s backwards, floatContainer 7s ease-in-out infinite 1s, borderGlow 4s ease-in-out infinite;
+}
+
+#upload-section h2 {
+  margin: 0 0 0.25rem 0;
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2rem;
+  font-weight: 400;
+  text-align: center;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-lavender), var(--accent-gold));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+#upload-section p {
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.3px;
+}
+
+.card-sparkle {
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 0.5rem;
+  opacity: 0.7;
+}
+
+.card-subtitle {
+  font-style: italic;
+  color: var(--text-secondary) !important;
+  font-size: 0.85rem !important;
+}
+
+.card-footer {
+  margin-top: 1.5rem !important;
+  margin-bottom: 0 !important;
+  font-size: 0.75rem !important;
+  color: rgba(255, 255, 255, 0.35) !important;
+  letter-spacing: 0.5px;
+}
+
+/* ─── Photo Cards Layout ─── */
+.photo-cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.photo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.photo-card:hover {
+  transform: translateY(-4px);
+}
+
+.photo-preview {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid transparent;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04)),
+    linear-gradient(135deg, var(--accent-pink), var(--accent-lavender), var(--accent-gold));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(255, 45, 117, 0.15);
+}
+
+.photo-card:hover .photo-preview {
+  box-shadow: 0 4px 30px rgba(255, 45, 117, 0.35);
+}
+
+.photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.photo-icon {
+  font-size: 2rem;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.photo-card:hover .photo-icon {
+  opacity: 0.8;
+}
+
+.photo-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent-rose);
+  letter-spacing: 0.5px;
+}
+
+.photo-heart {
+  font-size: 1.5rem;
+  animation: heartBeat 1.5s infinite;
+  margin-bottom: 1.5rem;
+}
+
+/* ─── Prompt Section ─── */
+#prompt-section {
+  margin-top: 4rem;
+  padding: 2.5rem;
+  max-width: 540px;
+  width: 90%;
+  text-align: center;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  animation: floatContainer 6s ease-in-out infinite, borderGlow 4s ease-in-out infinite;
+}
+
+#prompt-section p {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(255, 45, 117, 0.3);
+}
+
+.response-options {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ─── Buttons ─── */
+.primary-btn,
+.secondary-btn {
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-lavender));
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(255, 45, 117, 0.4);
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 30px rgba(255, 45, 117, 0.6);
+}
+
+.secondary-btn {
+  background: transparent;
+  color: var(--accent-rose);
+  border: 1px solid var(--accent-rose);
+  box-shadow: 0 4px 15px rgba(255, 107, 157, 0.15);
+}
+
+.secondary-btn:hover {
+  background: rgba(255, 107, 157, 0.1);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
+}
+
+#textResponse {
+  margin-top: 1rem;
+  padding: 0.75rem 1.25rem;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+#textResponse:focus {
+  border-color: var(--accent-pink);
+  box-shadow: 0 0 20px rgba(255, 45, 117, 0.15);
+}
+
+/* ─── Modal ─── */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.modal-content {
+  position: relative;
+  background: linear-gradient(145deg, rgba(26, 10, 46, 0.95), rgba(10, 0, 21, 0.95));
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 2.5rem;
+  width: 90%;
+  max-width: 700px;
+  text-align: center;
+  box-shadow: 0 0 60px rgba(255, 45, 117, 0.15), var(--glass-shadow);
+  backdrop-filter: blur(20px);
+  color: #fff;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.8rem;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.modal-content .close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+
+.modal-content .close:hover {
+  color: var(--accent-pink);
+}
+
+/* ─── Full-Screen Gift Reveal ─── */
+.gift-reveal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gift-reveal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(10, 0, 21, 0.97), rgba(26, 10, 46, 0.97), rgba(45, 27, 78, 0.95));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.gift-reveal-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2.5rem 2rem;
+  max-width: 550px;
+  width: 90%;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.gift-reveal-content .close {
+  position: absolute;
+  top: 0;
+  right: 0.5rem;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.3);
+  transition: color 0.2s;
+  z-index: 5;
+}
+
+.gift-reveal-content .close:hover {
+  color: var(--accent-pink);
+}
+
+.gift-reveal-tagline {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin: 0 0 0.5rem 0;
+  opacity: 0.8;
+  animation: fadeInUp 0.6s ease-out 0.2s backwards;
+}
+
+/* ─── Reveal Floating Hearts ─── */
+.reveal-hearts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.reveal-heart {
+  position: absolute;
+  bottom: -5%;
+  opacity: 0;
+  animation: revealFloat 6s linear forwards;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 0 4px rgba(255, 45, 117, 0.3));
+}
+
+@keyframes revealFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) rotate(0deg) scale(0.5);
+  }
+
+  10% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+
+  90% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-110vh) rotate(360deg);
+  }
+}
+
+/* ─── Sparkle Decorators ─── */
+.sparkle {
+  position: absolute;
+  font-size: 1.2rem;
+  color: var(--accent-gold);
+  opacity: 0;
+  animation: sparklePulse 2.5s ease-in-out infinite;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.sparkle-1 {
+  top: 5%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.sparkle-2 {
+  top: 8%;
+  right: 12%;
+  animation-delay: 0.6s;
+}
+
+.sparkle-3 {
+  bottom: 15%;
+  left: 8%;
+  animation-delay: 1.2s;
+}
+
+.sparkle-4 {
+  bottom: 12%;
+  right: 10%;
+  animation-delay: 1.8s;
+}
+
+@keyframes sparklePulse {
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.5) rotate(0deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.3) rotate(180deg);
+  }
+}
+
+/* ─── Gift Reveal Title (moved below photos) ─── */
+.gift-reveal-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.8rem;
+  margin: 0 0 0.75rem 0;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-lavender), var(--accent-gold));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite, fadeInUp 0.8s ease-out 1.2s backwards;
+}
+
+/* ─── Polaroid Stage ─── */
+.polaroid-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin: 0.5rem 0 1.5rem;
+  position: relative;
+}
+
+.polaroid {
+  background: #fff;
+  padding: 8px 8px 28px 8px;
+  border-radius: 4px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 45, 117, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  z-index: 2;
+}
+
+.polaroid:hover {
+  z-index: 4;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 45, 117, 0.3);
+}
+
+.polaroid-left {
+  transform: rotate(-8deg) translateX(15px);
+  animation: slideFromLeft 1s ease-out 0.3s backwards;
+}
+
+.polaroid-left:hover {
+  transform: rotate(-3deg) translateX(15px) scale(1.05);
+}
+
+.polaroid-right {
+  transform: rotate(6deg) translateX(-15px);
+  animation: slideFromRight 1s ease-out 0.5s backwards;
+}
+
+.polaroid-right:hover {
+  transform: rotate(2deg) translateX(-15px) scale(1.05);
+}
+
+.polaroid-img {
+  width: 140px;
+  height: 140px;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.polaroid-img img:not([hidden]) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.polaroid-caption {
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 4px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 1rem;
+}
+
+.polaroid-heart-big {
+  font-size: 2.5rem;
+  z-index: 5;
+  position: relative;
+  animation: heartBeat 1.5s infinite, fadeInUp 0.6s ease-out 0.8s backwards;
+  filter: drop-shadow(0 0 15px rgba(255, 45, 117, 0.6)) drop-shadow(0 0 30px rgba(255, 45, 117, 0.3));
+  margin: 0 -10px;
+}
+
+@keyframes slideFromLeft {
+  from {
+    opacity: 0;
+    transform: rotate(-20deg) translateX(-100px) scale(0.5);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(-8deg) translateX(15px) scale(1);
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    opacity: 0;
+    transform: rotate(20deg) translateX(100px) scale(0.5);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(6deg) translateX(-15px) scale(1);
+  }
+}
+
+/* ─── Gift Message ─── */
+.gift-reveal-message {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin: 0 0 2rem 0;
+  animation: fadeInUp 0.8s ease-out 1.4s backwards;
+}
+
+/* ─── Valentine CTA Button ─── */
+.valentine-cta {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-lavender), var(--accent-pink));
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite, fadeInUp 0.8s ease-out 1.6s backwards, pulse 2.5s ease-in-out infinite 3s;
+  box-shadow: 0 4px 25px rgba(255, 45, 117, 0.4), 0 0 60px rgba(255, 45, 117, 0.15);
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.valentine-cta:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 40px rgba(255, 45, 117, 0.6), 0 0 80px rgba(255, 45, 117, 0.25);
+}
+
+/* ─── Mic Recording Overlay ─── */
+.mic-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mic-overlay-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 0, 25, 0.92);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+.mic-overlay-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* Pulsing concentric rings */
+.mic-rings {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.mic-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid var(--accent-pink);
+  opacity: 0;
+  animation: ringPulse 2s ease-out infinite;
+}
+
+.mic-ring-1 {
+  width: 80px;
+  height: 80px;
+  animation-delay: 0s;
+}
+
+.mic-ring-2 {
+  width: 130px;
+  height: 130px;
+  animation-delay: 0.4s;
+}
+
+.mic-ring-3 {
+  width: 180px;
+  height: 180px;
+  animation-delay: 0.8s;
+}
+
+@keyframes ringPulse {
+  0% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(0.5);
+    border-color: var(--accent-pink);
+  }
+
+  50% {
+    opacity: 0.3;
+    border-color: var(--accent-lavender);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+    border-color: var(--accent-gold);
+  }
+}
+
+.mic-icon {
+  font-size: 4rem;
+  position: relative;
+  z-index: 3;
+  animation: micBounce 1s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(255, 45, 117, 0.5)) drop-shadow(0 0 40px rgba(196, 113, 237, 0.3));
+}
+
+@keyframes micBounce {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.mic-label {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 1px;
+  margin: 0;
+  animation: fadeInUp 0.5s ease-out 0.3s backwards;
+  text-shadow: 0 0 20px rgba(255, 45, 117, 0.4);
+}
+
+.mic-status {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+  animation: fadeInUp 0.5s ease-out 0.5s backwards;
+}
+
+.mic-status.mic-success {
+  color: #4ecdc4;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.mic-status.mic-error {
+  color: var(--accent-pink);
+  font-weight: 500;
+}
+
+/* ─── Utility ─── */
+.hidden {
+  display: none !important;
+}

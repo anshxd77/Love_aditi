@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentine's Day Surprise</title>
+  <!-- Google Fonts for a romantic script and clean sans serif -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&family=Playwrite+NZ+Basic:wght@100..400&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <!-- Animated background elements: stars, moon and hearts -->
+  <canvas id="stars-canvas"></canvas>
+  <canvas id="shooting-stars-canvas"></canvas>
+  <div class="moon"></div>
+  <div id="hearts-container"></div>
+  <!-- Cursor heart trail -->
+  <div id="cursorTrail"></div>
+  <!-- Touch/click love burst -->
+  <div id="loveBurst"></div>
+
+  <!-- Floating love text phrases (spawned by JS) -->
+  <div id="floatingTexts" class="floating-texts-bg"></div>
+
+  <!-- Corner sparkle decorators -->
+  <div class="idx-sparkle idx-sparkle-tl">✦</div>
+  <div class="idx-sparkle idx-sparkle-tr">✧</div>
+  <div class="idx-sparkle idx-sparkle-bl">✧</div>
+  <div class="idx-sparkle idx-sparkle-br">✦</div>
+
+  <!-- Love ticker marquee -->
+  <div class="love-ticker">
+    <div class="love-ticker-track">
+      <span>I Love You Aditi ❤️</span>
+      <span>💖</span>
+      <span>Forever & Always</span>
+      <span>💕</span>
+      <span>Ansh ♥ Aditi</span>
+      <span>🌹</span>
+      <span>My Aadubadia</span>
+      <span>💝</span>
+      <span>Soulmates</span>
+      <span>✨</span>
+      <span>Made For Each Other</span>
+      <span>💗</span>
+      <span>You Are My World</span>
+      <span>🥰</span>
+      <span>Dream Come True</span>
+      <span>💫</span>
+      <!-- Duplicate for seamless loop -->
+      <span>I Love You Aditi ❤️</span>
+      <span>💖</span>
+      <span>Forever & Always</span>
+      <span>💕</span>
+      <span>Ansh ♥ Aditi</span>
+      <span>🌹</span>
+      <span>My Aadubadia</span>
+      <span>💝</span>
+      <span>Soulmates</span>
+      <span>✨</span>
+      <span>Made For Each Other</span>
+      <span>💗</span>
+      <span>You Are My World</span>
+      <span>🥰</span>
+      <span>Dream Come True</span>
+      <span>💫</span>
+    </div>
+  </div>
+
+  <!-- Main content wrapper -->
+  <div class="content">
+    <!-- Central declaration of love -->
+    <h1 id="main-message">I Love You <span class="name">Aditi</span></h1>
+
+    <!-- ═══ Shayari — floating open-air text ═══ -->
+    <div id="shayari-section" class="shayari-open">
+      <div class="shayari-sparkles" id="shayariSparkles"></div>
+      <div class="shayari-deco-left">❝</div>
+      <p class="shayari-line" id="shayariLine1">थोड़े गुस्से वाले थोड़े नादान हो तुम,</p>
+      <p class="shayari-line shayari-line-2" id="shayariLine2">लेकिन जैसे भी हो मेरी जान हो तुम।</p>
+      <div class="shayari-deco-right">❞</div>
+      <button id="shayariPlayBtn" class="shayari-play-btn" title="Listen to this shayari">
+        <span class="shayari-play-icon">🎵</span>
+        <span class="shayari-play-text">Suniye</span>
+      </button>
+      <!-- Speaker popup (shown while playing) -->
+      <div id="speakerPopup" class="speaker-popup hidden">
+        <div class="speaker-rings">
+          <div class="speaker-ring speaker-ring-1"></div>
+          <div class="speaker-ring speaker-ring-2"></div>
+          <div class="speaker-ring speaker-ring-3"></div>
+        </div>
+        <div class="speaker-icon">🔊</div>
+        <div class="speaker-waves">
+          <span class="speaker-wave"></span>
+          <span class="speaker-wave"></span>
+          <span class="speaker-wave"></span>
+          <span class="speaker-wave"></span>
+          <span class="speaker-wave"></span>
+        </div>
+        <span class="speaker-label">♪ Playing Shayari ♪</span>
+      </div>
+    </div>
+
+    <!-- ═══ Heartbeat ECG Divider ═══ -->
+    <div class="heartbeat-divider">
+      <svg viewBox="0 0 600 60" preserveAspectRatio="none">
+        <polyline class="heartbeat-line" fill="none" stroke="url(#heartGrad)" stroke-width="2"
+          points="0,30 80,30 100,30 120,10 135,50 150,5 165,55 180,30 200,30 250,30 270,30 290,10 305,50 320,5 335,55 350,30 370,30 420,30 440,30 460,10 475,50 490,5 505,55 520,30 540,30 600,30" />
+        <defs>
+          <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgba(255,45,117,0)" />
+            <stop offset="20%" stop-color="rgba(255,45,117,0.6)" />
+            <stop offset="50%" stop-color="rgba(255,107,157,0.8)" />
+            <stop offset="80%" stop-color="rgba(196,113,237,0.6)" />
+            <stop offset="100%" stop-color="rgba(196,113,237,0)" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- ═══ "Why I Love You" Typewriter ═══ -->
+    <div class="love-reasons">
+      <span class="love-reasons-label">I love you because...</span>
+      <span class="love-reasons-text" id="loveReasonText"></span>
+      <span class="love-reasons-cursor">|</span>
+    </div>
+
+    <!-- Upload section to personalise the photos used in the gift slideshow -->
+    <section id="upload-section">
+      <div class="card-sparkle">✦ Valentine's Day 2026 ✦</div>
+      <h2>Our Story ❤️</h2>
+      <p class="card-subtitle">Two hearts, one love — tap to seal it forever</p>
+      <div class="photo-cards">
+        <div class="photo-card" onclick="document.getElementById('malePhoto').click()">
+          <div class="photo-preview" id="malePreview">
+            <span class="photo-icon">📷</span>
+          </div>
+          <span class="photo-label">Ansh</span>
+          <input type="file" id="malePhoto" accept="image/*" hidden />
+        </div>
+        <div class="photo-heart">💕</div>
+        <div class="photo-card" onclick="document.getElementById('femalePhoto').click()">
+          <div class="photo-preview" id="femalePreview">
+            <span class="photo-icon">📷</span>
+          </div>
+          <span class="photo-label">Aditi</span>
+          <input type="file" id="femalePhoto" accept="image/*" hidden />
+        </div>
+      </div>
+      <p class="card-footer">upload both to unlock your surprise ✨</p>
+    </section>
+
+    <!-- Section that appears when the user scrolls down, asking if she wants the gift -->
+    <section id="prompt-section" class="hidden">
+      <p>Do you want to see your Valentine's gift?</p>
+      <div class="response-options">
+        <button id="voiceBtn" class="primary-btn">Answer with voice 🎤</button>
+        <button id="textBtn" class="secondary-btn">Answer with text</button>
+      </div>
+      <input type="text" id="textResponse" class="hidden" placeholder="Type your answer..." />
+    </section>
+
+    <!-- Full-screen magical gift reveal -->
+    <div id="giftModal" class="gift-reveal hidden">
+      <div class="gift-reveal-backdrop"></div>
+      <!-- Floating hearts inside reveal (spawned by JS) -->
+      <div id="revealHearts" class="reveal-hearts"></div>
+
+      <div class="gift-reveal-content">
+        <span class="close" id="giftClose">&times;</span>
+
+        <!-- Sparkle decorators -->
+        <div class="sparkle sparkle-1">✦</div>
+        <div class="sparkle sparkle-2">✧</div>
+        <div class="sparkle sparkle-3">✦</div>
+        <div class="sparkle sparkle-4">✧</div>
+
+        <p class="gift-reveal-tagline">✦ Made With Love ✦</p>
+
+        <!-- Polaroid photos - overlapping, tilted -->
+        <div class="polaroid-stage">
+          <div class="polaroid polaroid-left">
+            <div class="polaroid-img">
+              <img id="maleImg" src="images/male-placeholder.png" alt="Ansh" />
+            </div>
+            <span class="polaroid-caption">Ansh 💙</span>
+          </div>
+
+          <div class="polaroid-heart-big">💖</div>
+
+          <div class="polaroid polaroid-right">
+            <div class="polaroid-img">
+              <img id="femaleImg" src="images/female-placeholder.png" alt="Aditi" />
+              <img id="femaleImgBlur" src="images/female-placeholder.png" alt="" hidden />
+            </div>
+            <span class="polaroid-caption">Aditi 💗</span>
+          </div>
+        </div>
+
+        <h2 class="gift-reveal-title">You & Me, Forever</h2>
+        <p class="gift-reveal-message">In a world full of people, my eyes will always search for you. 🌹</p>
+
+        <button id="valentineQuestionBtn" class="valentine-cta">
+          Will you be my Valentine? 💍
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Animated Mic Recording Overlay -->
+  <div id="micOverlay" class="mic-overlay hidden">
+    <div class="mic-overlay-backdrop"></div>
+    <div class="mic-overlay-content">
+      <div class="mic-rings">
+        <div class="mic-ring mic-ring-1"></div>
+        <div class="mic-ring mic-ring-2"></div>
+        <div class="mic-ring mic-ring-3"></div>
+      </div>
+      <div class="mic-icon">🎤</div>
+      <p class="mic-label">Listening...</p>
+      <p class="mic-status" id="micStatus">Say "Yes" 💖</p>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>

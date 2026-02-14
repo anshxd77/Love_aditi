@@ -1,0 +1,13 @@
+{
+  "name": "valentine-site",
+  "version": "1.0.0",
+  "description": "A romantic Valentine's Day surprise website for Aditi created by Ansh.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "multer": "^2.0.2"
+  }
+}

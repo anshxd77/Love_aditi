@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forever Yours — Happy Valentine's Day</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&family=Playwrite+NZ+Basic:wght@100..400&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/valentine.css" />
+</head>
+
+<body>
+  <!-- Confetti canvas (burst on load) -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Floating love text phrases (spawned by JS) -->
+  <div id="floatingTexts" class="floating-texts"></div>
+
+  <!-- Sparkle border decorations -->
+  <div class="corner-sparkle corner-tl">✦</div>
+  <div class="corner-sparkle corner-tr">✧</div>
+  <div class="corner-sparkle corner-bl">✧</div>
+  <div class="corner-sparkle corner-br">✦</div>
+
+  <!-- Scrollable content -->
+  <div class="valentine-scroll">
+
+    <!-- Section 1: Hero -->
+    <section class="v-section v-hero">
+      <p class="v-tagline">✦ Happy Valentine's Day 2026 ✦</p>
+      <h1>I Love You, My <span class="aadubadia">Aadubadia</span></h1>
+      <p class="v-scroll-hint">scroll down 💕</p>
+    </section>
+
+    <!-- Section 2: Love Promises -->
+    <section class="v-section v-promises">
+      <h2 class="section-title">My Promises To You</h2>
+      <div class="promise-grid">
+        <div class="promise-card">
+          <span class="promise-emoji">🤝</span>
+          <p>I promise to hold your hand through every storm and every sunset.</p>
+        </div>
+        <div class="promise-card">
+          <span class="promise-emoji">😂</span>
+          <p>I promise to make you laugh so hard your cheeks hurt, every single day.</p>
+        </div>
+        <div class="promise-card">
+          <span class="promise-emoji">🌙</span>
+          <p>I promise that you will be the last thought on my mind every night.</p>
+        </div>
+        <div class="promise-card">
+          <span class="promise-emoji">🛡️</span>
+          <p>I promise to protect your heart like the most precious treasure in this world.</p>
+        </div>
+        <div class="promise-card">
+          <span class="promise-emoji">🎯</span>
+          <p>I promise to choose you, again and again, without pause, without doubt.</p>
+        </div>
+        <div class="promise-card">
+          <span class="promise-emoji">♾️</span>
+          <p>I promise that my love for you will only grow stronger with every passing moment.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: "Why I Love You" typewriter -->
+    <section class="v-section v-reasons">
+      <h2 class="section-title">Why I Love You</h2>
+      <div class="typewriter-box">
+        <p id="typewriterText" class="typewriter-text"></p>
+        <span class="typewriter-cursor">|</span>
+      </div>
+    </section>
+
+    <!-- Section 4: Love Counter -->
+    <section class="v-section v-counter">
+      <h2 class="section-title">Our Love Story</h2>
+      <p class="counter-subtitle">Together since the moment my heart found yours</p>
+      <div class="love-counter" id="loveCounter">
+        <div class="counter-unit">
+          <span class="counter-number" id="counterDays">0</span>
+          <span class="counter-label">Days</span>
+        </div>
+        <div class="counter-divider">:</div>
+        <div class="counter-unit">
+          <span class="counter-number" id="counterHours">0</span>
+          <span class="counter-label">Hours</span>
+        </div>
+        <div class="counter-divider">:</div>
+        <div class="counter-unit">
+          <span class="counter-number" id="counterMins">0</span>
+          <span class="counter-label">Minutes</span>
+        </div>
+        <div class="counter-divider">:</div>
+        <div class="counter-unit">
+          <span class="counter-number" id="counterSecs">0</span>
+          <span class="counter-label">Seconds</span>
+        </div>
+      </div>
+      <p class="counter-footer">...and counting forever 💖</p>
+    </section>
+
+    <!-- Section 5: Final love letter -->
+    <section class="v-section v-letter">
+      <div class="love-letter-final">
+        <p class="letter-greeting">My Dearest Aditi,</p>
+        <p>You are not just my Valentine — you are my whole universe. Every smile of yours lights up my darkest days,
+          and every moment with you feels like a dream I never want to wake up from.</p>
+        <p>Thank you for being you. Thank you for existing. Thank you for choosing me.</p>
+        <p class="letter-sign">Forever & Always Yours,<br /><span class="letter-name">Ansh</span> 💌</p>
+      </div>
+    </section>
+
+    <!-- Section 6: Music -->
+    <section class="v-section v-music">
+      <button id="playMusicBtn" class="music-btn">
+        🎵 Play Our Love Song
+      </button>
+      <p class="music-hint">A melody made just for you</p>
+    </section>
+
+  </div>
+
+  <script src="js/valentine.js"></script>
+</body>
+
+</html>
