@@ -241,6 +241,10 @@ function setupUploads() {
           console.log('Male photo uploaded:', url);
           maleImg.src = url;
           maleUploaded = true;
+          // Visual feedback
+          const card = document.getElementById('malePreview').closest('.photo-card');
+          if (card) card.classList.add('uploaded-success');
+
           checkBothUploaded();
         });
       }
@@ -257,6 +261,10 @@ function setupUploads() {
           if (femaleImgNormal) femaleImgNormal.src = url;
           if (femaleImgBlur) femaleImgBlur.src = url;
           femaleUploaded = true;
+          // Visual feedback
+          const card = document.getElementById('femalePreview').closest('.photo-card');
+          if (card) card.classList.add('uploaded-success');
+
           checkBothUploaded();
         });
       }
