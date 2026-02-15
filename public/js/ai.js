@@ -32,6 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
     initLoveChef();
     initVowGenerator();
 
+    // Love & Magic Features
+    initCursorTrail();
+    initPromisesJar();
+    initCupidQuest();
+
     // Auto-enable wave effect
     document.body.classList.add('wave-active');
 
@@ -1631,3 +1636,127 @@ async function searchAndPlaySong(query) {
 */
 
 /* Music Player Concept Removed */
+
+/* ═══════════════════════════════════════
+   LOVE & MAGIC UPGRADES
+   ═══════════════════════════════════════ */
+
+/**
+ * 1. MAGICAL CURSOR TRAIL
+ */
+function initCursorTrail() {
+    const emojis = ['❤️', '✨', '💖', '⭐', '💕', '🌸'];
+    let lastPos = { x: 0, y: 0 };
+
+    document.addEventListener('mousemove', (e) => {
+        const dist = Math.hypot(e.clientX - lastPos.x, e.clientY - lastPos.y);
+        if (dist < 40) return; // Only spawn if moved far enough
+        lastPos = { x: e.clientX, y: e.clientY };
+
+        const el = document.createElement('div');
+        el.className = 'cursor-particle';
+        el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        el.style.left = e.clientX + 'px';
+        el.style.top = e.clientY + 'px';
+        document.body.appendChild(el);
+
+        el.addEventListener('animationend', () => el.remove());
+    });
+}
+
+/**
+ * 2. PROMISES JAR
+ */
+function initPromisesJar() {
+    const jar = document.getElementById('jarContainer');
+    const popup = document.getElementById('voucherPopup');
+    const content = document.getElementById('voucherContent');
+    if (!jar) return;
+
+    const promises = [
+        "A surprise romantic dinner date 🕯️",
+        "A full body massage session 💆‍♀️",
+        "One whole day of NO arguments 🕊️",
+        "A movie night of your choice 🍿",
+        "A handwritten love letter ✍️",
+        "Infinite hugs for 24 hours 🤗",
+        "I will cook your favorite meal 🍳",
+        "A surprise gift delivery 🎁",
+        "A sunset walk together 🌅",
+        "A weekend getaway planning session ✈️",
+        "Ice cream date on demand 🍦",
+        "A big forehead kiss whenever you ask 💋",
+        "Compliments for 1 hour straight 💖",
+        "Breakfast in bed ☕",
+        "I will do all chores for a day 🧹"
+    ];
+
+    jar.addEventListener('click', () => {
+        const visual = jar.querySelector('.jar-visual');
+        visual.classList.add('jar-wobble');
+        setTimeout(() => visual.classList.remove('jar-wobble'), 600);
+
+        const randomPromise = promises[Math.floor(Math.random() * promises.length)];
+        content.textContent = randomPromise;
+        popup.classList.add('active');
+
+        // Close after 5 seconds or on next click
+        setTimeout(() => popup.classList.remove('active'), 5000);
+    });
+}
+
+/**
+ * 3. CUPID'S QUEST (AI ADVENTURES)
+ */
+function initCupidQuest() {
+    const startBtn = document.getElementById('startQuestBtn');
+    const container = document.getElementById('questContainer');
+    const body = document.getElementById('questBody');
+    const choices = document.getElementById('questChoices');
+    const loading = document.getElementById('questLoading');
+    if (!startBtn) return;
+
+    let storyContext = "We are starting a romantic adventure for Ansh and Aditi.";
+
+    async function playQuest(userChoice = "Start the story") {
+        loading.classList.remove('hidden');
+        choices.innerHTML = '';
+
+        try {
+            const result = await aiRequest('cupid-quest', {
+                context: storyContext,
+                choice: userChoice
+            });
+
+            // Expected format from AI: "Story text here. [Choice 1] [Choice 2]"
+            const parts = result.split('[');
+            const storyPart = parts[0].trim();
+            const optionParts = parts.slice(1).map(p => p.replace(']', '').trim());
+
+            typewriterEffect(body, storyPart, 20);
+            storyContext += `\nAditi chose: ${userChoice}\nStory: ${storyPart}`;
+
+            setTimeout(() => {
+                loading.classList.add('hidden');
+                optionParts.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'ai-btn quest-btn';
+                    btn.textContent = opt;
+                    btn.onclick = () => playQuest(opt);
+                    choices.appendChild(btn);
+                });
+            }, storyPart.length * 20 + 500);
+
+        } catch (err) {
+            loading.classList.add('hidden');
+            body.textContent = `💔 The quest faded... (Error: ${err.message})`;
+            const retry = document.createElement('button');
+            retry.className = 'ai-btn';
+            retry.textContent = "Try Again";
+            retry.onclick = () => playQuest();
+            choices.appendChild(retry);
+        }
+    }
+
+    startBtn.addEventListener('click', () => playQuest());
+}

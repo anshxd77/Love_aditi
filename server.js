@@ -338,6 +338,28 @@ app.post('/api/vow-generator', async (req, res) => {
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
+// 18. Cupid's Quest
+app.post('/api/cupid-quest', async (req, res) => {
+  console.log('🏹 Cupid Quest request received:', req.body);
+  try {
+    const { context, choice } = req.body;
+    const text = await generate(
+      `You are a romantic dungeon master for a choose-your-own-adventure game for Ansh and Aditi. 
+      The story so far: ${context || 'Just starting.'}
+      Aditi chose: ${choice}
+      
+      Continue the story in a magical, romantic, and slightly adventurous way (3-4 sentences). 
+      THEN, provide exactly 2-3 romantic or fun choices for the next branch.
+      
+      FORMAT: [Choice 1] [Choice 2] [Choice 3]
+      Example: You both land on a cloud made of cotton candy. [Eat the cloud] [Jump to the moon]
+      `,
+      `What happens next?`
+    );
+    res.json({ result: text });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
 // 17. Music Search (simulated)
 app.post('/api/music-search', async (req, res) => {
   try {

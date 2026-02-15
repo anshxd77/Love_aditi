@@ -27,26 +27,25 @@
         <span class="back-text">Back</span>
     </a>
 
-    <!-- Page Header: curtain opens from centre on load -->
-    <header class="ai-header">
-        <div class="ai-header-bg"></div>
-        <div class="ai-header-sparkles">
-            <span class="header-sparkle">✦</span>
-            <span class="header-sparkle">✧</span>
-            <span class="header-sparkle">✦</span>
-        </div>
-        <h1 class="ai-title">
-            <div class="ai-title-curtain-wrap">
-                <span class="ai-title-text">Ansh Love Aditi</span>
-                <span class="ai-title-icon">💘</span>
-            </div>
-        </h1>
-        <div class="ai-title-underline"></div>
-        <p class="ai-subtitle">Powered by Ansh’s eternal love for Aditi</p>
-    </header>
-
     <main class="ai-main">
         <div class="ai-scroll-container">
+            <!-- Page Header: curtain opens from centre on load -->
+            <header class="ai-header">
+                <div class="ai-header-bg"></div>
+                <div class="ai-header-sparkles">
+                    <span class="header-sparkle">✦</span>
+                    <span class="header-sparkle">✧</span>
+                    <span class="header-sparkle">✦</span>
+                </div>
+                <h1 class="ai-title">
+                    <div class="ai-title-curtain-wrap" id="aiTitleWrap">
+                        <span class="ai-title-text">Ansh Love Aditi</span>
+                        <span class="ai-title-icon">💘</span>
+                    </div>
+                </h1>
+                <div class="ai-title-underline"></div>
+                <p class="ai-subtitle">Powered by Ansh’s eternal love for Aditi</p>
+            </header>
 
             <!-- ═══ 1. LOVE LETTER GENERATOR ═══ -->
             <section class="ai-section love-letter-section" id="loveLetter">
@@ -459,7 +458,6 @@
                 </div>
             </section>
 
-            <!-- ═══ 16. VOW GENERATOR ═══ -->
             <section class="ai-section" id="vowGenerator">
                 <div class="section-glow"></div>
                 <div class="section-header">
@@ -481,6 +479,45 @@
                 </div>
                 <div class="ai-loading hidden" id="vowLoading">
                     <div class="loading-quill">✍️</div><span>Writing from the heart...</span>
+                </div>
+            </section>
+
+            <!-- ═══ 17. LOVE PROMISES JAR ═══ -->
+            <section class="ai-section promises-jar-section" id="promisesJar">
+                <div class="section-glow"></div>
+                <div class="section-header">
+                    <span class="section-icon">🏺</span>
+                    <h2>The Promise Jar</h2>
+                    <p class="section-desc">Tap the jar to reveal a digital love voucher from Ansh</p>
+                </div>
+                <div class="jar-container ai-card-premium" id="jarContainer">
+                    <div class="jar-visual">🏺</div>
+                    <div class="voucher-popup" id="voucherPopup">
+                        <span class="voucher-ribbon">💖</span>
+                        <div id="voucherContent">Extracting a promise...</div>
+                        <div class="voucher-footer">Signed with Love, Ansh</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ 18. CUPID'S QUEST (STORY) ═══ -->
+            <section class="ai-section quest-section" id="cupidQuest">
+                <div class="section-glow"></div>
+                <div class="section-header">
+                    <span class="section-icon">🏹</span>
+                    <h2>Cupid's Romantic Quest</h2>
+                    <p class="section-desc">Interactive story builder for Ansh & Aditi</p>
+                </div>
+                <div class="quest-container ai-card-premium" id="questContainer">
+                    <div class="quest-text" id="questBody">
+                        Welcome to the adventure! Click the button below to start our personalized love story quest...
+                    </div>
+                    <div class="quest-choices" id="questChoices">
+                        <button class="ai-btn quest-btn" id="startQuestBtn">Start Our Quest</button>
+                    </div>
+                </div>
+                <div class="ai-loading hidden" id="questLoading">
+                    <div class="loading-quill">🏹</div><span>Weaving the next chapter...</span>
                 </div>
             </section>
 
