@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ansh ❤️ Aditi | Eternal Magic ✨</title>
+    <meta name="description"
+        content="AI-powered love features — poems, predictions, quizzes and more for Ansh & Aditi" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/ai.css">
+    <link rel="stylesheet" href="css/music.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
+</head>
+
+<body>
+    <!-- Starfield background -->
+    <canvas id="stars-canvas"></canvas>
+    <div id="hearts-container"></div>
+
+    <!-- Back to main page -->
+    <a href="index.html" class="back-btn" title="Back to main page">
+        <span class="back-arrow">←</span>
+        <span class="back-text">Back</span>
+    </a>
+
+    <!-- Page Header: curtain opens from centre on load -->
+    <header class="ai-header">
+        <div class="ai-header-bg"></div>
+        <div class="ai-header-sparkles">
+            <span class="header-sparkle">✦</span>
+            <span class="header-sparkle">✧</span>
+            <span class="header-sparkle">✦</span>
+        </div>
+        <h1 class="ai-title">
+            <div class="ai-title-curtain-wrap">
+                <span class="ai-title-text">Ansh Love Aditi</span>
+                <span class="ai-title-icon">💘</span>
+            </div>
+        </h1>
+        <div class="ai-title-underline"></div>
+        <p class="ai-subtitle">Powered by Ansh’s eternal love for Aditi</p>
+    </header>
+
+    <main class="ai-main">
+        <div class="ai-scroll-container">
+
+            <!-- ═══ 1. LOVE LETTER GENERATOR ═══ -->
+            <section class="ai-section love-letter-section" id="loveLetter">
+                <div class="section-glow"></div>
+                <div class="section-header">
+                    <span class="section-icon">💌</span>
+                    <h2>Love Letter Generator</h2>
+                    <p class="section-desc">Give me a few words, and I'll write something that'll make her heart melt
+                    </p>
+                </div>
+                <div class="letter-input-area ai-card-premium">
+                    <div class="keyword-chips" id="keywordChips">
+                        <span class="chip-hint">Type keywords & press Enter ↵</span>
+                    </div>
+                    <input type="text" id="letterKeywordInput" class="glass-input"
+                        placeholder="e.g. stargazing, coffee, forever..." />
+                    <button id="generateLetterBtn" class="ai-btn primary-ai-btn">
+                        <span class="btn-sparkle">✨</span>
+                        <span>Write My Letter</span>
+                        <span class="btn-sparkle">✨</span>
+                    </button>
+                </div>
+                <div class="letter-output-area hidden" id="letterOutput">
+                    <div class="parchment">
+                        <div class="parchment-corner parchment-tl"></div>
+                        <div class="parchment-corner parchment-tr"></div>
+                        <div class="parchment-corner parchment-bl"></div>
+                        <div class="parchment-corner parchment-br"></div>
+                        <p class="parchment-salutation">My Dearest Aditi,</p>
+                        <div class="parchment-body" id="letterBody"></div>
+                        <p class="parchment-signature">Forever yours, Ansh 💕</p>
+                    </div>
+                </div>
+                <div class="ai-loading hidden" id="letterLoading">
+                    <div class="loading-quill">🪶</div>
+                    <span>Crafting your love letter...</span>
+                </div>
+            </section>
+
+            <!-- ═══ 2. LOVE ORACLE ═══ -->
+            <section class="ai-section oracle-section" id="loveOracle">
+                <div class="section-glow"></div>
+                <div class="section-header">
+                    <span class="section-icon">🔮</span>
+                    <h2>Love Oracle</h2>
+                    <p class="section-desc">Ask the cosmic oracle about your love story</p>
+                </div>
+                <div class="oracle-stage ai-card-premium">
+                    <div class="crystal-ball" id="crystalBall">
+                        <div class="crystal-inner">
+                            <div class="crystal-mist"></div>
+                            <div class="crystal-mist crystal-mist-2"></div>
+                            <div class="crystal-glow"></div>
+                            <span class="crystal-emoji">🔮</span>
+                        </div>
+                        <div class="crystal-base"></div>
+                        <div class="crystal-stars">
+                            <span class="crystal-star">✦</span>
+                            <span class="crystal-star">✧</span>
+                            <span class="crystal-star">✦</span>
+                            <span class="crystal-star">✧</span>
+                            <span class="crystal-star">✦</span>
+                        </div>
+                    </div>
+                    <input type="text" id="oracleInput" class="glass-input oracle-input"
+                        placeholder="Ask the oracle... e.g. 'What does our future hold?'" />
+                    <button id="oracleBtn" class="ai-btn oracle-btn">
+                        <span>🌙</span>
+                        <span>Reveal My Destiny</span>
+                        <span>🌙</span>
+                    </button>
+                </div>
+                <div class="oracle-prediction hidden" id="oraclePrediction">
+                    <div class="prediction-border">
+                        <span class="prediction-star">✦</span>
+                        <p class="prediction-text" id="predictionText"></p>
+                        <span class="prediction-star prediction-star-end">✦</span>
+                    </div>
+                </div>
+                <div class="ai-loading hidden" id="oracleLoading">
+                    <div class="loading-quill">🔮</div>
+                    <span>The stars are aligning...</span>
+                </div>
+            </section>
+
+            <!-- ═══ 3. INFINITE REASONS ═══ -->
+            <section class="ai-section reasons-section" id="infiniteReasons">
+                <div class="section-glow"></div>
+                <div class="section-header">
+                    <span class="section-icon">♾️</span>
+                    <h2>Infinite Reasons I Love You</h2>
+                    <p class="section-desc">An endless stream of new reasons, powered by AI</p>
+                </div>
+                <div class="reasons-carousel ai-card-premium">
+                    <div class="reasons-card" id="reasonCard">
+                        <div class="reasons-card-particles" id="reasonParticles"></div>
+                        <span class="reasons-quote-mark">❝</span>
+                        <p class="reasons-text" id="reasonText">Click below to discover a new reason...</p>
+                        <span class="reasons-quote-mark reasons-quote-end">❞</span>
+                    </div>
+                    <button id="newReasonBtn" class="ai-btn reason-btn">
+                        <span>💝</span>
+                        <span>New Reason</span>
+                        <span class="reason-counter" id="reasonCounter">0</span>
+                    </button>
+                    <button id="autoReasonBtn" class="ai-btn-secondary">
+                        <span id="autoReasonIcon">▶</span>
+                        <span id="autoReasonText">Auto-play</span>
+                    </button>
+                </div>
+                <div class="ai-loading hidden" id="reasonLoading">
+                    <div class="loading-quill">💭</div>
+                    <span>Thinking of another reason...</span>
+                </div>
+            </section>
+
+            <!-- ═══ 4. LOVE TRANSLATOR ═══ -->
+            <section class="ai-section translator-section" id="loveTranslator">
+                <div class="section-glow"></div>
+                <div class="section-header">
+                    <span class="section-icon">🌍</span>
+                    <h2>Love Translator</h2>
+                    <p class="section-desc">Say "I Love You" in every language the universe speaks</p>
+                </div>
+                <div class="translator-controls ai-card-premium">
+                    <input type="text" id="translateInput" class="glass-input" placeholder="Type your love message..."
+                        value="I love you more than words can express" />
+                    <div class="format-tabs" id="formatTabs">
+                        <button class="format-tab active" data-format="emoji">
+                            <span class="tab-icon">😍</span>
+                            <span>Emoji</span>
+                        </button>
+                        <button class="format-tab" data-format="code">
+                            <span class="tab-icon">💻</span>
+                            <span>Code</span>
+                        </button>
+                        <button class="format-tab" data-format="poetry">
+                            <span class="tab-icon">📝</span>
+                            <span>Poetry</span>
+                        </button>
+                        <button class="format-tab" data-format="shakespeare">
+                            <span class="tab-icon">🎭</span>
+                            <span>Shakespeare</span>
+                        </button>
+                        <button class="format-tab" data-format="shayari">
+                            <span class="tab-icon">🕌</span>
+                            <span>Shayari</span>
+                        </button>
+                    </div>
+                    <button id="translateBtn" class="ai-btn translate-btn">
+                        <span>🌐</span>
+                        <span>Translate</span>
+                    </button>
+                </div>
+                <div class="translator-output hidden" id="translatorOutput">
+                    <div class="translation-card">
+                        <div class="translation-format-label" id="translationFormatLabel">Emoji</div>
+                        <pre class="translation-text" id="translationText"></pre>
+                    </div>
+                </div>
+                <div class="ai-loading hidden" id="translateLoading">
+                    <div class="loading-quill">🌐</div>
+                    <span>Translating your love...</span>
+                </div>
+            </section>
+
+            <!-- ═══ 5. RELATIONSHIP TRIVIA ═══ -->
+            <section class="ai-section trivia-section" id="loveTrivia">
+                <div class="section-glow"></div>
+                <div class="section-header">
+                    <span class="section-icon">🧩</span>
+                    <h2>Love Trivia Quiz</h2>
+                    <p class="section-desc">Test your love knowledge — 5 questions, can you ace them all?</p>
+                </div>
+                <!-- Start Screen -->
+                <div class="trivia-start" id="triviaStart">
+                    <div class="trivia-trophy">🏆</div>
+                    <p class="trivia-invite">Think you know everything about love? Let's find out!</p>
+                    <button id="startTriviaBtn" class="ai-btn trivia-start-btn">
+                        <span>💘</span>
+                        <span>Start Quiz</span>
+                    </button>
+                </div>
+                <!-- Quiz Screen -->
+                <div class="trivia-quiz hidden" id="triviaQuiz">
+                    <div class="trivia-progress">
+                        <div class="trivia-progress-bar" id="triviaProgress"></div>
+                        <span class="trivia-progress-text" id="triviaProgressText">1 / 5</span>
+                    </div>
+                    <div class="trivia-question-card">
+                        <p class="trivia-question" id="triviaQuestion">Loading question...</p>
+                        <div class="trivia-container ai-card-premium" id="triviaOptions"></div>
+                    </div>
+                    <div class="trivia-feedback hidden" id="triviaFeedback">
+                        <span class="trivia-feedback-icon" id="triviaFeedbackIcon"></span>
+                        <p class="trivia-feedback-text" id="triviaFeedbackText"></p>
+                        <p class="trivia-fun-fact" id="triviaFunFact"></p>
+                        <button id="nextQuestionBtn" class="ai-btn trivia-next-btn">Next →</button>
+                    </div>
+                </div>
+                <!-- Score Screen -->
+                <div class="trivia-score hidden" id="triviaScore">
+                    <div class="score-confetti" id="scoreConfetti"></div>
+                    <div class="score-emoji" id="scoreEmoji">🏆</div>
+                    <h3 class="score-title" id="scoreTitle">Amazing!</h3>
+                    <p class="score-value" id="scoreValue">5 / 5</p>
+                    <p class="score-message" id="scoreMessage">You're a love expert!</p>
+                    <button id="retryTriviaBtn" class="ai-btn">
+                        <span>🔄</span>
+                        <span>Play Again</span>
+                    </button>
+                </div>
+                <div class="ai-loading hidden" id="triviaLoading">
+                    <div class="loading-quill">🧠</div>
+                    <span>Creating your love quiz...</span>
+                </div>
+            </section>
+
+            <!-- ═══ 7. DATE NIGHT PLANNER ═══ -->
+            <section class="ai-section" id="datePlanner">
+                <div class="section-glow"></div>
+                <div class="section-header">
+                    <span class="section-icon">📅</span>
+                    <h2>Date Night Planner</h2>
+                    <p class="section-desc">Perfect plans for any mood or location</p>
+                </div>
+                <div class="input-group ai-card-premium">
+                    <input type="text" id="dateLocation" class="glass-input" placeholder="Location (e.g. Home, Paris)"
+                        style="margin-bottom: 0.5rem">
+                    <input type="text" id="dateVibe" class="glass-input"
+                        placeholder="Vibe (e.g. Cozy, Fancy, Adventurous)">
+                    <button id="dateBtn" class="ai-btn" style="margin-top: 1rem; width: 100%">Plan Date 🌹</button>
+                </div>
+                <div class="output-area hidden" id="dateOutput">
+                    <div class="parchment-body" id="dateResult"></div>
+                </div>
+                <div class="ai-loading hidden" id="dateLoading">
+                    <div class="loading-quill">📅</div><span>Planning the perfect night...</span>
+                </div>
+            </section>
+
+            <!-- ═══ 8. OUR STORY NARRATOR ═══ -->
+            <section class="ai-section" id="storyNarrator">
+                <div class="section-glow"></div>
+                <div class="section-header">
+                    <span class="section-icon">📖</span>
+                    <h2>Our Story Narrator</h2>
+                    <p class="section-desc">Turn your milestones into a fairytale</p>
+                </div>
+                <div class="input-group ai-card-premium">
+                    <textarea id="storyMilestones" class="glass-input" rows="3"
+                        placeholder="Met at coffee shop, First trip to Goa..."></textarea>
+                    <button id="storyBtn" class="ai-btn" style="margin-top: 1rem; width: 100%">Tell Our Story ✨</button>
+                </div>
+                <div class="output-area hidden ai-card-premium" id="storyOutput">
+                    <div class="parchment-body" id="storyResult"></div>
+                </div>
+                <div class="ai-loading hidden" id="storyLoading">
+                    <div class="loading-quill">✒️</div><span>Writing your fairytale...</span>
+                </div>
+            </section>
+
+            <!-- ═══ 9. LOVE SONG WRITER ═══ -->
+            <section class="ai-section" id="songWriter">
+                <div class="section-glow"></div>
+                <div class="section-header">
+                    <span class="section-icon">🎵</span>
+                    <h2>Love Song Writer</h2>
+                    <p class="section-desc">Lyrics dedicated to Aditi</p>
+                </div>
+                <div class="input-group ai-card-premium">
+                    <input type="text" id="songStyle" class="glass-input"
+                        placeholder="Music Style (e.g. Acoustic, Rap, Bollywood)">
+                    <button id="songBtn" class="ai-btn" style="margin-top: 1rem; width: 100%">Compose Song 🎸</button>
+                </div>
+                <div class="output-area hidden" id="songOutput">
+                    <pre class="parchment-body" id="songResult"
+                        style="white-space: pre-wrap; font-family: 'Courier New', monospace;"></pre>
+                </div>
+                <div class="ai-loading hidden" id="songLoading">
+                    <div class="loading-quill">🎶</div><span>Composing melody...</span>
+                </div>
+            </section>
+
+            <!-- ═══ 10. SOULMATE COMPATIBILITY ═══ -->
+            <section class="ai-section" id="compatibility">
+                <div class="section-glow"></div>
+                <div class="section-header">
+                    <span class="section-icon">🌟</span>
+                    <h2>Soulmate Report</h2>
+                    <p class="section-desc">Validating your 100% match</p>
+                </div>
+                <div class="input-group ai-card-premium">
+                    <input type="text" id="compName1" class="glass-input" value="Ansh" style="margin-bottom: 0.5rem">
+                    <input type="text" id="compName2" class="glass-input" value="Aditi" style="margin-bottom: 0.5rem">
+                    <input type="text" id="compFacts" class="glass-input" placeholder="Fun fact (e.g. Both love pizza)">
+                    <button id="compBtn" class="ai-btn" style="margin-top: 1rem; width: 100%">Analyze Love 💘</button>
+                </div>
+                <div class="output-area hidden" id="compOutput">
+                    <div class="parchment-body" id="compResult"></div>
+                </div>
+                <div class="ai-loading hidden" id="compLoading">
+                    <div class="loading-quill">🔬</div><span>Calculating chemistry...</span>
+                </div>
+            </section>
+
+            <!-- ═══ 11. TEXT ENHANCER ═══ -->
+            <section class="ai-section" id="textEnhancer">
+                <div class="section-glow"></div>
+                <div class="section-header">
+                    <span class="section-icon">💌</span>
+                    <h2>Text Enhancer</h2>
+                    <p class="section-desc">Upgrade your messages</p>
+                </div>
+                <div class="input-group ai-card-premium">
+                    <input type="text" id="textInput" class="glass-input" placeholder="Boring text (e.g. I miss you)">
+                    <button id="textBtn" class="ai-btn" style="margin-top: 1rem; width: 100%">Enhance Magic ✨</button>
+                </div>
+                <div class="output-area hidden" id="textOutput">
+                    <div class="parchment-body" id="textResult"></div>
+                </div>
+                <div class="ai-loading hidden" id="textLoading">
+                    <div class="loading-quill">✨</div><span>Sprinkling magic...</span>
+                </div>
+            </section>
+
+            <!-- ═══ 12. MOVIE SCENE RE-ENACTOR ═══ -->
+            <section class="ai-section" id="movieScene">
+                <div class="section-glow"></div>
+                <div class="section-header">
+                    <span class="section-icon">🎬</span>
+                    <h2>Movie Scene Re-enactor</h2>
+                    <p class="section-desc">Star in your own romantic movie</p>
+                </div>
+                <div class="input-group ai-card-premium">
+                    <input type="text" id="movieSituation" class="glass-input"
+                        placeholder="Situation (e.g. Taking out trash, Buying milk)">
+                    <button id="movieBtn" class="ai-btn" style="margin-top: 1rem; width: 100%">Action! 🎬</button>
+                </div>
+                <div class="output-area hidden" id="movieOutput">
+                    <div class="parchment-body" id="movieResult"></div>
+                </div>
+                <div class="ai-loading hidden" id="movieLoading">
+                    <div class="loading-quill">🎥</div><span>Filming scene...</span>
+                </div>
+            </section>
+
+            <!-- ═══ 13. FUTURE BABY/PET PREDICTOR ═══ -->
+            <section class="ai-section" id="futurePredictor">
+                <div class="section-glow"></div>
+                <div class="section-header">
+                    <span class="section-icon">🔮</span>
+                    <h2>Future Predictor</h2>
+                    <p class="section-desc">What will your future family look like?</p>
+                </div>
+                <div class="input-group ai-card-premium">
+                    <input type="text" id="parentTraits" class="glass-input"
+                        placeholder="Our traits (e.g. He is nerdy, She is artistic)">
+                    <button id="futureBtn" class="ai-btn" style="margin-top: 1rem; width: 100%">Predict Future
+                        👶</button>
+                </div>
+                <div class="output-area hidden" id="futureOutput">
+                    <div class="parchment-body" id="futureResult"></div>
+                </div>
+                <div class="ai-loading hidden" id="futureLoading">
+                    <div class="loading-quill">🍼</div><span>Consulting the timeline...</span>
+                </div>
+            </section>
+
+            <!-- ═══ 14. DREAM HONEYMOON ═══ -->
+            <section class="ai-section" id="honeymoon">
+                <div class="section-glow"></div>
+                <div class="section-header">
+                    <span class="section-icon">✈️</span>
+                    <h2>Dream Honeymoon</h2>
+                    <p class="section-desc">Escape to a magical destination</p>
+                </div>
+                <div class="input-group ai-card-premium">
+                    <input type="text" id="honeymoonVibe" class="glass-input"
+                        placeholder="Vibe (e.g. Space, Underwater, Forest)">
+                    <button id="honeymoonBtn" class="ai-btn" style="margin-top: 1rem; width: 100%">Pack Bags 🧳</button>
+                </div>
+                <div class="output-area hidden" id="honeymoonOutput">
+                    <div class="parchment-body" id="honeymoonResult"></div>
+                </div>
+                <div class="ai-loading hidden" id="honeymoonLoading">
+                    <div class="loading-quill">🏝️</div><span>Discovering paradise...</span>
+                </div>
+            </section>
+
+            <!-- ═══ 15. LOVE CHEF ═══ -->
+            <section class="ai-section" id="loveChef">
+                <div class="section-glow"></div>
+                <div class="section-header">
+                    <span class="section-icon">🍝</span>
+                    <h2>Love Chef</h2>
+                    <p class="section-desc">Turn random ingredients into romance</p>
+                </div>
+                <div class="input-group ai-card-premium">
+                    <input type="text" id="chefIngredients" class="glass-input"
+                        placeholder="Ingredients (e.g. Bread, Cheese, Jam)">
+                    <button id="chefBtn" class="ai-btn" style="margin-top: 1rem; width: 100%">Cook Something
+                        👨‍🍳</button>
+                </div>
+                <div class="output-area hidden" id="chefOutput">
+                    <div class="parchment-body" id="chefResult"></div>
+                </div>
+                <div class="ai-loading hidden" id="chefLoading">
+                    <div class="loading-quill">🍳</div><span>Sautéing with love...</span>
+                </div>
+            </section>
+
+            <!-- ═══ 16. VOW GENERATOR ═══ -->
+            <section class="ai-section" id="vowGenerator">
+                <div class="section-glow"></div>
+                <div class="section-header">
+                    <span class="section-icon">💍</span>
+                    <h2>Vow Generator</h2>
+                    <p class="section-desc">Promises for a lifetime</p>
+                </div>
+                <div class="input-group ai-card-premium">
+                    <div class="format-tabs" id="vowTabs" style="justify-content: center; margin-bottom: 1rem;">
+                        <button class="format-tab active" data-tone="Romantic">Romantic</button>
+                        <button class="format-tab" data-tone="Funny">Funny</button>
+                        <button class="format-tab" data-tone="Emotional">Emotional</button>
+                        <button class="format-tab" data-tone="Short">Short</button>
+                    </div>
+                    <button id="vowBtn" class="ai-btn" style="width: 100%">Write Vows 📜</button>
+                </div>
+                <div class="output-area hidden" id="vowOutput">
+                    <div class="parchment-body" id="vowResult"></div>
+                </div>
+                <div class="ai-loading hidden" id="vowLoading">
+                    <div class="loading-quill">✍️</div><span>Writing from the heart...</span>
+                </div>
+            </section>
+
+            <!-- ═══ 6. CUPID'S CHATBOT ═══ -->
+            <!-- Floating chat widget -->
+            <div class="cupid-fab" id="cupidFab" title="Chat with Cupid 💘">
+                <span class="cupid-fab-icon">💘</span>
+                <span class="cupid-fab-pulse"></span>
+            </div>
+            <div class="cupid-chat hidden" id="cupidChat">
+                <div class="cupid-chat-header">
+                    <div class="cupid-avatar">💘</div>
+                    <div class="cupid-info">
+                        <span class="cupid-name">Cupid</span>
+                        <span class="cupid-status">Online • The God of Love</span>
+                    </div>
+                    <button class="cupid-close" id="cupidClose">✕</button>
+                </div>
+                <div class="cupid-chat-body" id="cupidChatBody">
+                    <div class="chat-msg cupid-msg">
+                        <div class="chat-msg-avatar">💘</div>
+                        <div class="chat-msg-bubble">Hey there, lovebird! 🥰 I'm Cupid, and I've been watching over Ansh
+                            &
+                            Aditi's love story. Ask me anything about love, romance, or share a photo! 📸💕</div>
+                    </div>
+                </div>
+                <div class="cupid-image-preview hidden" id="cupidImagePreview">
+                    <img id="cupidPreviewImg" src="" alt="Preview" />
+                    <button class="cupid-preview-remove" id="cupidPreviewRemove">✕</button>
+                </div>
+                <div class="cupid-chat-input">
+                    <input type="file" id="cupidImageInput" accept="image/*" class="hidden" />
+                    <button id="cupidImageBtn" class="cupid-upload-btn" title="Upload a photo 📸">
+                        <span>📸</span>
+                    </button>
+                    <input type="text" id="cupidInput" placeholder="Ask Cupid or share a photo..." />
+                    <button id="cupidSendBtn" class="cupid-send">
+                        <span>💌</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- YouTube API key should be kept server-side. Use server proxy instead. -->
+    <script src="js/nav.js"></script>
+    <script type="module" src="js/ai.js"></script>
+    <script src="js/music-player.js"></script>
+</body>
+
+</html>

@@ -2040,6 +2040,361 @@ body {
   font-weight: 500;
 }
 
+/* ─── Cupid's Corner: wrapper (hover reveals card) ─── */
+.cupid-corner-wrap {
+  position: fixed;
+  bottom: 3.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Card that appears on hover — full height up, left-side glow */
+.cupid-corner-card {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 280px;
+  height: 0;
+  min-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  border-radius: 20px 20px 20px 0;
+  overflow: hidden;
+  transition: height 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.35s ease,
+    min-height 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: linear-gradient(165deg,
+    rgba(40, 10, 50, 0.92),
+    rgba(80, 20, 70, 0.88),
+    rgba(60, 15, 55, 0.9));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-right: none;
+  border-bottom: none;
+  box-shadow:
+    -8px 0 40px rgba(255, 105, 180, 0.25),
+    -4px 0 24px rgba(255, 215, 0, 0.15),
+    inset 1px 0 0 rgba(255, 255, 255, 0.06);
+  z-index: 0;
+}
+
+.ai-magic-fab {
+  z-index: 1;
+}
+
+.cupid-corner-wrap:hover .cupid-corner-card {
+  height: calc(100vh - 4rem);
+  min-height: 320px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Left-edge magical glow */
+.cupid-corner-glow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  background: linear-gradient(90deg,
+    rgba(255, 105, 180, 0.5),
+    rgba(255, 215, 0, 0.35),
+    transparent);
+  box-shadow:
+    0 0 30px rgba(255, 105, 180, 0.5),
+    0 0 60px rgba(255, 215, 0, 0.25);
+  animation: cupidGlowPulse 2s ease-in-out infinite;
+}
+
+.cupid-corner-card-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 45%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 55%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: aiFabShine 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Door panels: cover content, slide apart on hover */
+.cupid-door {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  z-index: 2;
+  background: linear-gradient(165deg,
+    rgba(40, 10, 50, 0.98),
+    rgba(60, 15, 55, 0.96));
+  border: 1px solid rgba(255, 215, 0, 0.15);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+.cupid-door-left {
+  left: 0;
+  border-right: 1px solid rgba(255, 215, 0, 0.2);
+  transform-origin: left center;
+}
+
+.cupid-door-right {
+  right: 0;
+  border-left: 1px solid rgba(255, 215, 0, 0.2);
+  transform-origin: right center;
+}
+
+.cupid-corner-wrap:hover .cupid-door-left {
+  transform: translateX(-100%);
+}
+
+.cupid-corner-wrap:hover .cupid-door-right {
+  transform: translateX(100%);
+}
+
+.cupid-corner-card-content {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem 1.25rem 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Staggered text reveal when door opens */
+.cupid-corner-card-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 24px rgba(255, 215, 0, 0.45), 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.03em;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease 0.25s, transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1) 0.25s;
+}
+
+.cupid-corner-card-desc {
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.45s ease 0.4s, transform 0.45s cubic-bezier(0.34, 1.2, 0.64, 1) 0.4s;
+}
+
+.cupid-corner-card-desc:nth-of-type(2) {
+  transition-delay: 0.55s, 0.55s;
+}
+
+.cupid-corner-card-cta {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255, 215, 0, 0.98);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease 0.75s, transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1) 0.75s;
+  text-shadow: 0 0 16px rgba(255, 215, 0, 0.4);
+}
+
+.cupid-corner-wrap:hover .cupid-corner-card-title,
+.cupid-corner-wrap:hover .cupid-corner-card-desc,
+.cupid-corner-wrap:hover .cupid-corner-card-cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Parda (curtain): lifts slowly then page navigates ─── */
+.cupid-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.cupid-curtain[aria-hidden="true"] {
+  visibility: hidden;
+}
+
+.cupid-curtain.cupid-curtain-lift {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.cupid-curtain-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  height: 100dvh;
+  background: linear-gradient(180deg,
+    rgba(20, 5, 35, 0.99) 0%,
+    rgba(35, 12, 50, 0.98) 30%,
+    rgba(45, 15, 55, 0.97) 60%,
+    rgba(55, 18, 65, 0.98) 100%);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.4), inset 0 2px 0 rgba(255, 215, 0, 0.03);
+  transform: translateY(0);
+  transition: transform 1.6s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.cupid-curtain.cupid-curtain-lift .cupid-curtain-panel {
+  transform: translateY(-100%);
+}
+
+@keyframes cupidGlowPulse {
+  0%, 100% {
+    opacity: 0.9;
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.5), 0 0 60px rgba(255, 215, 0, 0.25);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 40px rgba(255, 105, 180, 0.6), 0 0 80px rgba(255, 215, 0, 0.35);
+  }
+}
+
+/* ─── Floating Magic Button (same look, now inside wrap) ─── */
+.ai-magic-fab {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.75rem 1.4rem;
+  background: linear-gradient(135deg,
+    rgba(255, 105, 180, 0.28),
+    rgba(255, 182, 193, 0.22),
+    rgba(255, 215, 0, 0.18));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 215, 0, 0.35);
+  border-radius: 50px;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  animation: aiFabGlow 2.5s ease-in-out infinite alternate;
+  overflow: hidden;
+  box-shadow:
+    0 4px 20px rgba(255, 105, 180, 0.25),
+    0 0 35px rgba(255, 215, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.cupid-corner-wrap:hover .ai-magic-fab {
+  transform: translateY(-4px) scale(1.06);
+  box-shadow:
+    0 12px 40px rgba(255, 105, 180, 0.4),
+    0 0 60px rgba(255, 215, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 215, 0, 0.6);
+}
+
+.ai-magic-icon {
+  font-size: 1.15rem;
+  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
+  animation: aiFabSparkle 1.5s ease-in-out infinite;
+}
+
+.ai-magic-sparkle {
+  font-size: 0.75rem;
+  opacity: 0.9;
+  animation: aiFabSparkle 1.5s ease-in-out infinite 0.5s;
+}
+
+.ai-magic-label {
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.ai-magic-pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 215, 0, 0.45);
+  animation: aiFabPulse 2.2s ease-out infinite;
+  pointer-events: none;
+}
+
+.ai-magic-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: aiFabShine 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes aiFabGlow {
+  from {
+    box-shadow:
+      0 4px 20px rgba(255, 105, 180, 0.25),
+      0 0 35px rgba(255, 215, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  to {
+    box-shadow:
+      0 4px 28px rgba(255, 105, 180, 0.35),
+      0 0 50px rgba(255, 215, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+}
+
+@keyframes aiFabPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+@keyframes aiFabShine {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes aiFabSparkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
 /* ─── Utility ─── */
 .hidden {
   display: none !important;

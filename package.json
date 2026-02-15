@@ -4,9 +4,13 @@
   "description": "A romantic Valentine's Day surprise website for Aditi created by Ansh.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node --env-file=.env server.js"
   },
   "dependencies": {
-    "express": "^5.2.1"
+    "@google/generative-ai": "^0.24.1",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "groq-sdk": "^0.37.0",
+    "yt-search": "^2.13.1"
   }
 }
