@@ -562,17 +562,12 @@ function initShayari() {
       sparkleContainer.appendChild(s);
     }
   }
-
   let isPlaying = false;
-  let audioCtx = null;
-  let musicGain = null;
-  let musicTimeout = null;
   const speakerPopup = document.getElementById('speakerPopup');
 
   function showSpeaker() {
     if (speakerPopup) {
       speakerPopup.classList.remove('hidden');
-      // Force reflow then add visible
       void speakerPopup.offsetWidth;
       speakerPopup.classList.add('visible');
     }
@@ -585,35 +580,47 @@ function initShayari() {
     }
   }
 
+  let shayriAudio = null;
+
   btn.addEventListener('click', () => {
-    if (isPlaying) return;
+    if (isPlaying) {
+      // If already playing, stop it
+      if (shayriAudio) {
+        shayriAudio.pause();
+        shayriAudio.currentTime = 0;
+      }
+      isPlaying = false;
+      btn.classList.remove('playing');
+      const playText = btn.querySelector('.shayari-play-text');
+      if (playText) playText.textContent = 'Suniye';
+      hideSpeaker();
+      return;
+    }
+
     isPlaying = true;
     btn.classList.add('playing');
-    btn.querySelector('.shayari-play-text').textContent = 'Playing…';
+    const playText = btn.querySelector('.shayari-play-text');
+    if (playText) playText.textContent = 'Playing…';
 
     // Show speaker popup
     showSpeaker();
 
-    // Create audio context for background music
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    // Play the uploaded audio file
+    shayriAudio = new Audio('/love-shayri.mp3');
+    shayriAudio.play().catch(err => {
+      console.error('Error playing shayri audio:', err);
+      isPlaying = false;
+      btn.classList.remove('playing');
+      if (playText) playText.textContent = 'Suniye';
+      hideSpeaker();
+    });
 
-    // Start sweet background music
-    musicGain = playSweetMelody(audioCtx);
-
-    // After a short musical intro, speak the shayari
-    musicTimeout = setTimeout(() => {
-      speakShayari(() => {
-        // After speech ends, let music play for a bit then fade
-        setTimeout(() => {
-          fadeOutMusic(musicGain, audioCtx, () => {
-            isPlaying = false;
-            btn.classList.remove('playing');
-            btn.querySelector('.shayari-play-text').textContent = 'Suniye';
-            hideSpeaker();
-          });
-        }, 2000);
-      });
-    }, 2000);
+    shayriAudio.addEventListener('ended', () => {
+      isPlaying = false;
+      btn.classList.remove('playing');
+      if (playText) playText.textContent = 'Suniye';
+      hideSpeaker();
+    });
   });
 }
 
@@ -623,11 +630,12 @@ function initShayari() {
  * pause between them for dramatic effect.
  */
 function speakShayari(onComplete) {
-  const line1 = 'थोड़े गुस्से वाले, थोड़े नादान हो तुम';
-  const line2 = 'लेकिन जैसे भी हो, मेरी जान हो तुम';
-
   const el1 = document.getElementById('shayariLine1');
   const el2 = document.getElementById('shayariLine2');
+
+  // Read text directly from the DOM so it stays in sync with the page
+  const line1 = el1 ? el1.textContent.trim() : '';
+  const line2 = el2 ? el2.textContent.trim() : '';
 
   // Helper to create a singing-style utterance
   function makeSinging(text) {

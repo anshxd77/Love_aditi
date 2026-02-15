@@ -7,6 +7,9 @@ const PORT = process.env.PORT || 3000;
 // Serve static files from the `public` directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Serve uploaded files from the `uploads` directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Valentine server running on http://localhost:${PORT}`);
